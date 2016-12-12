@@ -10,21 +10,27 @@ import { ListView } from 'realm/react-native'
 export default class App extends Component {
   state = {textInput: ''}
   _onSubmit (e) {
+    const {createTodoItem} = this.props
     if (e && e.nativeEvent.text.trim().length > 0) {
-      this.props.createTodoItem(e.nativeEvent.text.trim())
+      createTodoItem(e.nativeEvent.text.trim())
     }
     this.setState({textInput: ''})
   }
   render () {
+    const {dataSource, deleteTodoItem} = this.props
+    const {textInput} = this.state
     return (
       <View style={styles.container}>
-        <TextInput style={styles.textInput}
+        <TextInput
+          autoFocus
+          blurOnSubmit={false}
+          style={styles.textInput}
           onSubmitEditing={(e) => this._onSubmit(e)}
-          value={this.state.textInput}
+          value={textInput}
           onChange={(event) => this.setState({textInput: event.nativeEvent.text})} />
         <ListView
-          dataSource={this.props.dataSource}
-          renderRow={(todoItem) => <Text onPress={() => this.props.deleteTodoItem(todoItem)}>{todoItem.value}</Text>}
+          dataSource={dataSource}
+          renderRow={(todoItem) => <Text onPress={() => deleteTodoItem(todoItem)}>{todoItem.value}</Text>}
         />
       </View>
     )
