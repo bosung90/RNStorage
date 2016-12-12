@@ -4,9 +4,12 @@ import * as actions from './actions'
 import TodoItems from './TodoItems'
 import {getTodoItems} from '../reducers'
 
+// Realm.Results is auto-updating, therefore no need to re-fetch the data
+const todoItemsResults = store.getTodoItems()
+
 const mapStateToProps = (state, props) => ({
   ...getTodoItems(state),
-  dataSource: store.todoItemDS.cloneWithRows(store.getTodoItems())
+  dataSource: store.todoItemDS.cloneWithRows(todoItemsResults)
 })
 
 const mapDispatchToProps = {
