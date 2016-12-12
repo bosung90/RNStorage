@@ -11,7 +11,7 @@ export default class App extends Component {
   state = {textInput: ''}
   _onSubmit (e) {
     if (e && e.nativeEvent.text.trim().length > 0) {
-      this.props.createTodoItem(e.nativeEvent.text)
+      this.props.createTodoItem(e.nativeEvent.text.trim())
     }
     this.setState({textInput: ''})
   }
