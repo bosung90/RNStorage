@@ -24,7 +24,7 @@ export default class App extends Component {
           onChange={(event) => this.setState({textInput: event.nativeEvent.text})} />
         <ListView
           dataSource={this.props.dataSource}
-          renderRow={(todoItem) => <Text>{todoItem.value}</Text>}
+          renderRow={(todoItem) => <Text onPress={() => this.props.deleteTodoItem(todoItem)}>{todoItem.value}</Text>}
         />
       </View>
     )

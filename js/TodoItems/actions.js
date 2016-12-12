@@ -6,3 +6,10 @@ export const createTodoItem = (todoText) => {
     type: 'TODO_ITEM_ADDED'
   }
 }
+
+export const deleteTodoItem = (todoItem) => {
+  store.deleteTodoItem(todoItem)
+  return {
+    type: 'TODO_ITEM_DELETED'
+  }
+}
